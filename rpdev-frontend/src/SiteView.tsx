@@ -130,7 +130,7 @@ const SiteView: React.FC = () => {
         };
     }, []);
 
-    return <canvas ref={canvasRef} className='h-full w-full' />;
+    return <canvas ref={canvasRef} className='h-full w-full fixed' />;
 };
 
 export default SiteView;
