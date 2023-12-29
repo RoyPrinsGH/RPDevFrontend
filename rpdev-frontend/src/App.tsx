@@ -1,5 +1,5 @@
 import './App.css'
-import SiteView from './SiteView'
+import SiteView from './components/SiteView'
 
 function App() {
   return (
