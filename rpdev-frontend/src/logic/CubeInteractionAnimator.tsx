@@ -60,7 +60,7 @@ export default class CubeInteractionAnimator {
             case AnimationState.DRAGGING:
                 this.dragTo = undefined;
                 if (interaction.type === InteractionType.MOUSE_UP) {
-                    if (Math.abs(this.mousePositionBeforeDrag.x - interaction.x) < 0.1 && Math.abs(this.mousePositionBeforeDrag.y - interaction.y) < 0.1) {
+                    if (Math.abs(this.mousePositionBeforeDrag.x - interaction.x) < 10 && Math.abs(this.mousePositionBeforeDrag.y - interaction.y) < 10) {
                         this.animationState = AnimationState.FACE_ROTATION;
                         this.targetRotation = this.calculateTargetRotation(sceneManager, interaction);
                     } else {

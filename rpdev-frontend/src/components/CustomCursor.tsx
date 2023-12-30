@@ -9,9 +9,14 @@ const CustomCursor: React.FC = () => {
             return;
         }
 
-        const updateCursor = (e: MouseEvent) => {
+        const updateCursorMouseEvent = (e: MouseEvent) => {
             let cursorRect = cursor.getBoundingClientRect();
             gsap.to(cursor, {x: e.clientX - cursorRect.width / 2, y: e.clientY - cursorRect.height / 2, duration: 0.2 });
+        };
+
+        const updateCursortouchEvent = (e: TouchEvent) => {
+            let cursorRect = cursor.getBoundingClientRect();
+            gsap.to(cursor, {x: e.touches[0].clientX - cursorRect.width / 2, y: e.touches[0].clientY - cursorRect.height / 2, duration: 0.2 });
         };
 
         const shrinkCursor = () => {
@@ -22,14 +27,20 @@ const CustomCursor: React.FC = () => {
             gsap.to(cursor, {scale: 1, duration: 0.1 });
         };
 
-        document.addEventListener("mousemove", updateCursor);
+        document.addEventListener("mousemove", updateCursorMouseEvent);
         document.addEventListener("mousedown", shrinkCursor);
         document.addEventListener("mouseup", growCursor);
+        document.addEventListener("touchmove", updateCursortouchEvent);
+        document.addEventListener("touchstart", shrinkCursor);
+        document.addEventListener("touchend", growCursor);
 
         return () => {
-            document.removeEventListener("mousemove", updateCursor);
+            document.removeEventListener("mousemove", updateCursorMouseEvent);
             document.removeEventListener("mousedown", shrinkCursor);
             document.removeEventListener("mouseup", growCursor);
+            document.removeEventListener("touchmove", updateCursortouchEvent);
+            document.removeEventListener("touchstart", shrinkCursor);
+            document.removeEventListener("touchend", growCursor);
         };
 
     }, []);
