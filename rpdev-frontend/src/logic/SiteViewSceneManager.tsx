@@ -69,6 +69,22 @@ export class SiteViewSceneManager implements InteractionPiper {
         return undefined;
     }
 
+    public getObjectScreenCoordinates(object: Object3D): { x: number; y: number } {
+        const screenPosition = object.position.clone().project(this.camera);
+
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+
+        const x = Math.round((screenPosition.x + 1) * screenWidth / 2);
+        const y = Math.round((-screenPosition.y + 1) * screenHeight / 2);
+
+        return { x, y };
+    }
+
+    public getSceneObjects(): Object3D[] {
+        return this.scene.children;
+    }
+
     public updateCameraAspect(aspect: number) {
         this.camera.aspect = aspect;
         this.camera.updateProjectionMatrix();

@@ -37,6 +37,15 @@ const SiteView: React.FC = () => {
         const animate = () => {
             sceneManager.current!.tick();
             renderer.current!.render();
+
+            if (Math.random() < 0.002) {
+                addRandomObject();
+            }
+
+            if (Math.random() < 0.002 / 10 * sceneManager.current!.getSceneObjects().length) {
+                removeRandomObject();
+            }
+
             requestAnimationFrame(animate);
         };
 
@@ -45,10 +54,33 @@ const SiteView: React.FC = () => {
             renderer.current!.resize(window.innerWidth, window.innerHeight);
         };
 
+        const removeRandomObject = () => {
+            let objects = sceneManager.current!.getSceneObjects();
+            if (objects.length > 0) {
+                sceneManager.current!.remove(objects[0]);
+            }
+        }
+
+        const addRandomObject = () => {
+            let cube = new SiteViewCube();
+            cube.position.x = Math.random() * 7 - 3.5;
+            cube.position.y = Math.random() * 7 - 3.5;
+            cube.position.z = Math.random() * 7 - 3.5;
+            sceneManager.current!.add(cube, true, true);
+        }
+
+        const handleKeyDown = (event: KeyboardEvent)  => {
+            if (event.key === 'c') { console.log("pressed c"); addRandomObject() }
+            if (event.key === 'd') { removeRandomObject() }
+        }
+
+        window.addEventListener('keydown', handleKeyDown);
+
         animate();
 
         return () => {
             window.onresize = null;
+            window.removeEventListener('keydown', handleKeyDown);
             interactableCanvas.current!.stopListening();
         };
     }, []);

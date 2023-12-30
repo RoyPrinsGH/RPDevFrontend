@@ -48,6 +48,14 @@ export default class CubeInteractionAnimator {
     };
 
     pipe(sceneManager: SiteViewSceneManager, interaction: Interaction) {
+        let intersection = sceneManager.getIntersectionAtScreenPosition(interaction)
+        if (intersection === undefined || intersection.object.uuid !== this.targetObject.uuid) {
+            if (this.animationState === AnimationState.DRAGGING) {
+                this.dragTo = undefined;
+                this.animationState = AnimationState.DAMPING_ROTATION;
+            }
+            return;
+        }
         switch (this.animationState) {
             case AnimationState.DRAGGING:
                 this.dragTo = undefined;
@@ -139,6 +147,8 @@ export default class CubeInteractionAnimator {
                 break;
             case AnimationState.DISABLED:
             case AnimationState.IDLE:
+                this.animateIdleTick();
+                break;
             default:
                 break;
         }
@@ -226,5 +236,11 @@ export default class CubeInteractionAnimator {
         this.targetObject.rotation.x += clampAwayFromZero(rot.diff_x * 0.02, 0.002);
         this.targetObject.rotation.y += clampAwayFromZero(rot.diff_y * 0.02, 0.002);
         this.targetObject.rotation.z += clampAwayFromZero(rot.diff_z * 0.02, 0.002);
+    }
+
+    private animateIdleTick() {
+        this.targetObject.rotation.x += Math.sin(Date.now() * 0.0001) * 0.003;
+        this.targetObject.rotation.y += Math.cos(Date.now() * 0.0001) * 0.003;
+        this.targetObject.rotation.z += Math.sin(Date.now() * 0.0001 + 1) * 0.003;
     }
 }
