@@ -14,9 +14,9 @@ const CustomCursor: React.FC = () => {
             gsap.to(cursor, {x: e.clientX - cursorRect.width / 2, y: e.clientY - cursorRect.height / 2, duration: 0.2 });
         };
 
-        const updateCursortouchEvent = (e: TouchEvent) => {
+        const updateCursorTouchEvent = (e: TouchEvent) => {
             let cursorRect = cursor.getBoundingClientRect();
-            gsap.to(cursor, {x: e.touches[0].clientX - cursorRect.width / 2, y: e.touches[0].clientY - cursorRect.height / 2, duration: 0.2 });
+            gsap.to(cursor, {x: e.touches[0].clientX - cursorRect.width, y: e.touches[0].clientY - cursorRect.height, duration: 0.2 });
         };
 
         const shrinkCursor = () => {
@@ -30,23 +30,25 @@ const CustomCursor: React.FC = () => {
         document.addEventListener("mousemove", updateCursorMouseEvent);
         document.addEventListener("mousedown", shrinkCursor);
         document.addEventListener("mouseup", growCursor);
-        document.addEventListener("touchmove", updateCursortouchEvent);
+        document.addEventListener("touchmove", updateCursorTouchEvent);
         document.addEventListener("touchstart", shrinkCursor);
+        document.addEventListener("touchstart", updateCursorTouchEvent)
         document.addEventListener("touchend", growCursor);
 
         return () => {
             document.removeEventListener("mousemove", updateCursorMouseEvent);
             document.removeEventListener("mousedown", shrinkCursor);
             document.removeEventListener("mouseup", growCursor);
-            document.removeEventListener("touchmove", updateCursortouchEvent);
+            document.removeEventListener("touchmove", updateCursorTouchEvent);
             document.removeEventListener("touchstart", shrinkCursor);
+            document.removeEventListener("touchstart", updateCursorTouchEvent)
             document.removeEventListener("touchend", growCursor);
         };
 
     }, []);
 
     return (
-        <div id="cursor" className='w-32 h-32 z-10 border-2 border-black rounded-full absolute pointer-events-none'></div>
+        <div id="cursor" className='w-11 h-11 z-10 border-4 border-gray-300 rounded-full absolute pointer-events-none'></div>
     );
 };
 

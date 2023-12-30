@@ -12,7 +12,7 @@ export class SiteViewRenderer {
         this.renderer = new WebGLRenderer({ canvas });
 
         this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.renderer.setClearColor(0x030011);
+        this.renderer.setClearColor(0x020202);
 
         this.composer = new EffectComposer(this.renderer);
         this.composer.addPass(new RenderPass(this.sceneManager.scene, this.sceneManager.camera));
