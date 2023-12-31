@@ -5,8 +5,8 @@ import SiteView from './components/SiteView'
 function App() {
   return (
     <>
-      <CustomCursor />
-      <SiteView />
+      <CustomCursor moveDuration={0.2} shrinkDuration={0.1} />
+      <SiteView targetObjectCount={10} />
     </>
   )
 }

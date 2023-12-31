@@ -4,7 +4,11 @@ import { SiteViewSceneManager } from '../logic/SiteViewSceneManager';
 import { SiteViewCube } from '../logic/SiteViewCube';
 import { InteractableCanvas } from '../logic/InteractableCanvas';
 
-const SiteView: React.FC = () => {
+interface SiteViewProps {
+    targetObjectCount: number;
+}
+
+const SiteView: React.FC<SiteViewProps> = ({ targetObjectCount }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const sceneManager = useRef<SiteViewSceneManager>();
     const renderer = useRef<SiteViewRenderer>();
@@ -38,11 +42,13 @@ const SiteView: React.FC = () => {
             sceneManager.current!.tick();
             renderer.current!.render();
 
-            if (Math.random() < 0.002) {
+            let objectCount = sceneManager.current!.getSceneObjects().length + 0.000001;
+
+            if (Math.random() < 0.0005 / objectCount * targetObjectCount) {
                 addRandomObject();
             }
 
-            if (Math.random() < 0.002 / 10 * sceneManager.current!.getSceneObjects().length) {
+            if (Math.random() < 0.0005 / targetObjectCount * objectCount) {
                 removeRandomObject();
             }
 
@@ -83,7 +89,7 @@ const SiteView: React.FC = () => {
             window.removeEventListener('keydown', handleKeyDown);
             interactableCanvas.current!.stopListening();
         };
-    }, []);
+    }, [targetObjectCount]);
 
     return <canvas ref={canvasRef} className='h-full w-full fixed' />;
 };

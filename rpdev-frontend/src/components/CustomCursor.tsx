@@ -1,9 +1,17 @@
 import React, { useEffect } from 'react';
 import gsap from 'gsap';
 
-const CustomCursor: React.FC = () => {
+interface CustomCursorProps {
+  moveDuration: number;
+  shrinkDuration: number;
+}
+
+const CustomCursor: React.FC<CustomCursorProps> = ({ moveDuration, shrinkDuration }) => {
     
     useEffect(() => {
+
+        console.log("CustomCursor (re-)rendering...");
+
         const cursor = document.querySelector("#cursor");
         if (cursor === null) {
             return;
@@ -11,20 +19,20 @@ const CustomCursor: React.FC = () => {
 
         const updateCursorMouseEvent = (e: MouseEvent) => {
             let cursorRect = cursor.getBoundingClientRect();
-            gsap.to(cursor, {x: e.clientX - cursorRect.width / 2, y: e.clientY - cursorRect.height / 2, duration: 0.2 });
+            gsap.to(cursor, {x: e.clientX - cursorRect.width / 2, y: e.clientY - cursorRect.height / 2, duration: moveDuration});
         };
 
         const updateCursorTouchEvent = (e: TouchEvent) => {
             let cursorRect = cursor.getBoundingClientRect();
-            gsap.to(cursor, {x: e.touches[0].clientX - cursorRect.width, y: e.touches[0].clientY - cursorRect.height, duration: 0.2 });
+            gsap.to(cursor, {x: e.touches[0].clientX - cursorRect.width, y: e.touches[0].clientY - cursorRect.height, duration: moveDuration});
         };
 
         const shrinkCursor = () => {
-            gsap.to(cursor, {scale: 0.5, duration: 0.1 });
+            gsap.to(cursor, {scale: 0.5, duration: shrinkDuration});
         };
 
         const growCursor = () => {
-            gsap.to(cursor, {scale: 1, duration: 0.1 });
+            gsap.to(cursor, {scale: 1, duration: shrinkDuration});
         };
 
         document.addEventListener("mousemove", updateCursorMouseEvent);
@@ -45,7 +53,7 @@ const CustomCursor: React.FC = () => {
             document.removeEventListener("touchend", growCursor);
         };
 
-    }, []);
+    }, [moveDuration, shrinkDuration]);
 
     return (
         <div id="cursor" className='w-11 h-11 z-10 border-4 border-gray-300 rounded-full absolute pointer-events-none'></div>
