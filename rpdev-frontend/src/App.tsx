@@ -1,14 +1,12 @@
-import './App.css'
-import CustomCursor from './components/CustomCursor'
-import SiteView from './components/SiteView'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Hub from "./pages/hub";
 
-function App() {
+export default function App() {
   return (
-    <>
-      <CustomCursor moveDuration={0.2} shrinkDuration={0.1} />
-      <SiteView targetObjectCount={10} />
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="hub" Component={Hub} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-export default App
