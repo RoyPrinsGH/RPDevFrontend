@@ -1,13 +1,13 @@
 import { WebGLRenderer } from "three";
 import { BloomEffect, EffectComposer, EffectPass, RenderPass, DepthOfFieldEffect } from "postprocessing";
-import { SiteViewSceneManager } from "./SiteViewSceneManager";
+import { CubePlaygroundSceneManager } from "./CubePlaygroundSceneManager";
 
-export class SiteViewRenderer {
+export class CubePlaygroundRenderer {
     private renderer: WebGLRenderer;
     private composer: EffectComposer;
-    private sceneManager: SiteViewSceneManager;
+    private sceneManager: CubePlaygroundSceneManager;
 
-    constructor(canvas: HTMLCanvasElement, sceneManager: SiteViewSceneManager) {
+    constructor(canvas: HTMLCanvasElement, sceneManager: CubePlaygroundSceneManager) {
         this.sceneManager = sceneManager;
         this.renderer = new WebGLRenderer({ canvas });
 

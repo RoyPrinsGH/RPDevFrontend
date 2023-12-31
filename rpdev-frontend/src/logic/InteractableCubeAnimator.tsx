@@ -1,5 +1,5 @@
 import { Euler, Object3D, Vector3, Vector2 } from "three";
-import { SiteViewSceneManager } from "./SiteViewSceneManager";
+import { CubePlaygroundSceneManager } from "./CubePlaygroundSceneManager";
 import { Interaction, InteractionType } from "./InteractableCanvas";
 
 function correctRotation(rotation: number) {
@@ -30,7 +30,7 @@ enum AnimationState {
     FACE_ROTATION,
 }
 
-export default class CubeInteractionAnimator {
+export default class InteractableCubeAnimator {
 
     animationState: AnimationState;
     targetObject: Object3D;
@@ -47,7 +47,7 @@ export default class CubeInteractionAnimator {
         this.updateAnimationState();
     };
 
-    pipe(sceneManager: SiteViewSceneManager, interaction: Interaction) {
+    pipe(sceneManager: CubePlaygroundSceneManager, interaction: Interaction) {
         let intersection = sceneManager.getIntersectionAtScreenPosition(interaction)
         if (intersection === undefined || intersection.object.uuid !== this.targetObject.uuid) {
             if (this.animationState === AnimationState.DRAGGING) {
@@ -85,7 +85,7 @@ export default class CubeInteractionAnimator {
         }
     };
 
-    private calculateTargetRotation(sceneManager: SiteViewSceneManager, interaction: Interaction): Euler | undefined {
+    private calculateTargetRotation(sceneManager: CubePlaygroundSceneManager, interaction: Interaction): Euler | undefined {
         const mouse = new Vector2();
         mouse.x = (interaction.x / window.innerWidth) * 2 - 1;
         mouse.y = -(interaction.y / window.innerHeight) * 2 + 1;

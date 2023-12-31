@@ -2,14 +2,14 @@ import { Scene, PerspectiveCamera, Object3D, Raycaster, Vector2, Intersection, O
 import { Interaction, InteractionPiper } from "./InteractableCanvas";
 
 export interface InteractableObject extends Object3D {
-    pipe(sceneManager: SiteViewSceneManager, interaction: Interaction): void;
+    pipe(sceneManager: CubePlaygroundSceneManager, interaction: Interaction): void;
 }
 
 export interface UpdateableObject extends Object3D {
-    tick(sceneManager: SiteViewSceneManager): void;
+    tick(sceneManager: CubePlaygroundSceneManager): void;
 }
 
-export class SiteViewSceneManager implements InteractionPiper {
+export class CubePlaygroundSceneManager implements InteractionPiper {
     public scene: Scene;
     public camera: PerspectiveCamera;
     private raycaster: Raycaster;

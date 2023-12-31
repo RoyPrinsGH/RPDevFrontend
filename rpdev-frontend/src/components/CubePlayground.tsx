@@ -1,17 +1,17 @@
 import React, { useRef, useEffect } from 'react';
-import { SiteViewRenderer } from '../logic/SiteViewRenderer';
-import { SiteViewSceneManager } from '../logic/SiteViewSceneManager';
-import { SiteViewCube } from '../logic/SiteViewCube';
+import { CubePlaygroundRenderer } from '../logic/CubePlaygroundRenderer';
+import { CubePlaygroundSceneManager } from '../logic/CubePlaygroundSceneManager';
+import { InteractableCube } from '../logic/InteractableCube';
 import { InteractableCanvas } from '../logic/InteractableCanvas';
 
 interface SiteViewProps {
     targetObjectCount: number;
 }
 
-const SiteView: React.FC<SiteViewProps> = ({ targetObjectCount }) => {
+const CubePlayground: React.FC<SiteViewProps> = ({ targetObjectCount }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const sceneManager = useRef<SiteViewSceneManager>();
-    const renderer = useRef<SiteViewRenderer>();
+    const sceneManager = useRef<CubePlaygroundSceneManager>();
+    const renderer = useRef<CubePlaygroundRenderer>();
     const interactableCanvas = useRef<InteractableCanvas>();
 
     useEffect(() => {
@@ -23,13 +23,13 @@ const SiteView: React.FC<SiteViewProps> = ({ targetObjectCount }) => {
 
         if (sceneManager.current === undefined) {
             console.log("Creating new scene manager")
-            sceneManager.current = new SiteViewSceneManager();
-            sceneManager.current.add(new SiteViewCube(), true, true);
+            sceneManager.current = new CubePlaygroundSceneManager();
+            sceneManager.current.add(new InteractableCube(), true, true);
         }
 
         if (renderer.current === undefined) {
             console.log("Creating new renderer")
-            renderer.current = new SiteViewRenderer(canvasRef.current!, sceneManager.current);
+            renderer.current = new CubePlaygroundRenderer(canvasRef.current!, sceneManager.current);
         }
 
         if (interactableCanvas.current === undefined) {
@@ -68,7 +68,7 @@ const SiteView: React.FC<SiteViewProps> = ({ targetObjectCount }) => {
         }
 
         const addRandomObject = () => {
-            let cube = new SiteViewCube();
+            let cube = new InteractableCube();
             cube.position.x = Math.random() * 7 - 3.5;
             cube.position.y = Math.random() * 7 - 3.5;
             cube.position.z = Math.random() * 7 - 3.5;
@@ -94,4 +94,4 @@ const SiteView: React.FC<SiteViewProps> = ({ targetObjectCount }) => {
     return <canvas ref={canvasRef} className='h-full w-full fixed' />;
 };
 
-export default SiteView;
+export default CubePlayground;
