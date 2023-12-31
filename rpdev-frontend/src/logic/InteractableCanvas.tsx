@@ -23,23 +23,33 @@ export class InteractableCanvas {
         this.interactionPiper = interactionPiper;
     }
 
+    private convertMouseEventToInteraction(type: InteractionType, event: MouseEvent): Interaction {
+        return { type: type, x: event.clientX, y: event.clientY };
+    }
+
+    private convertTouchEventToInteraction(type: InteractionType, event: TouchEvent): Interaction {
+        return { type: type, x: event.touches[0].clientX, y: event.touches[0].clientY };
+    }
+
     public startListening() {
-        this.canvas.addEventListener("mousedown",   (event) => this.interactionPiper.pipe( { type: InteractionType.MOUSE_DOWN, x: event.clientX, y: event.clientY } as Interaction ));
-        this.canvas.addEventListener("mouseup",     (event) => this.interactionPiper.pipe( { type: InteractionType.MOUSE_UP,   x: event.clientX, y: event.clientY } as Interaction ));
-        this.canvas.addEventListener("mousemove",   (event) => this.interactionPiper.pipe( { type: InteractionType.MOUSE_MOVE, x: event.clientX, y: event.clientY } as Interaction ));
-        this.canvas.addEventListener("touchstart",  (event) => this.interactionPiper.pipe( { type: InteractionType.MOUSE_DOWN, x: event.touches[0].clientX, y: event.touches[0].clientY } as Interaction ));
-        this.canvas.addEventListener("touchend",    (event) => this.interactionPiper.pipe( { type: InteractionType.MOUSE_UP,   x: event.touches[0].clientX, y: event.touches[0].clientY } as Interaction ));
-        this.canvas.addEventListener("touchcancel", (event) => this.interactionPiper.pipe( { type: InteractionType.MOUSE_UP,   x: event.touches[0].clientX, y: event.touches[0].clientY } as Interaction ));
-        this.canvas.addEventListener("touchmove",   (event) => this.interactionPiper.pipe( { type: InteractionType.MOUSE_MOVE, x: event.touches[0].clientX, y: event.touches[0].clientY } as Interaction ));
+        this.canvas.addEventListener("mousedown",   (event) => this.interactionPiper.pipe( this.convertMouseEventToInteraction(InteractionType.MOUSE_DOWN, event) ));
+        this.canvas.addEventListener("mouseup",     (event) => this.interactionPiper.pipe( this.convertMouseEventToInteraction(InteractionType.MOUSE_UP, event) ));
+        this.canvas.addEventListener("mousemove",   (event) => this.interactionPiper.pipe( this.convertMouseEventToInteraction(InteractionType.MOUSE_MOVE, event) ));
+
+        this.canvas.addEventListener("touchstart",  (event) => this.interactionPiper.pipe( this.convertTouchEventToInteraction(InteractionType.MOUSE_DOWN, event) ));
+        this.canvas.addEventListener("touchend",    (event) => this.interactionPiper.pipe( this.convertTouchEventToInteraction(InteractionType.MOUSE_UP, event) ));
+        this.canvas.addEventListener("touchcancel", (event) => this.interactionPiper.pipe( this.convertTouchEventToInteraction(InteractionType.MOUSE_UP, event) ));
+        this.canvas.addEventListener("touchmove",   (event) => this.interactionPiper.pipe( this.convertTouchEventToInteraction(InteractionType.MOUSE_MOVE, event) ));
     }
 
     public stopListening() {
-        this.canvas.removeEventListener("mousedown",   (event) => this.interactionPiper.pipe( { type: InteractionType.MOUSE_DOWN, x: event.clientX, y: event.clientY } as Interaction ));
-        this.canvas.removeEventListener("mouseup",     (event) => this.interactionPiper.pipe( { type: InteractionType.MOUSE_UP,   x: event.clientX, y: event.clientY } as Interaction ));
-        this.canvas.removeEventListener("mousemove",   (event) => this.interactionPiper.pipe( { type: InteractionType.MOUSE_MOVE, x: event.clientX, y: event.clientY } as Interaction ));
-        this.canvas.removeEventListener("touchstart",  (event) => this.interactionPiper.pipe( { type: InteractionType.MOUSE_DOWN, x: event.touches[0].clientX, y: event.touches[0].clientY } as Interaction ));
-        this.canvas.removeEventListener("touchend",    (event) => this.interactionPiper.pipe( { type: InteractionType.MOUSE_UP,   x: event.touches[0].clientX, y: event.touches[0].clientY } as Interaction ));
-        this.canvas.removeEventListener("touchcancel", (event) => this.interactionPiper.pipe( { type: InteractionType.MOUSE_UP,   x: event.touches[0].clientX, y: event.touches[0].clientY } as Interaction ));
-        this.canvas.removeEventListener("touchmove",   (event) => this.interactionPiper.pipe( { type: InteractionType.MOUSE_MOVE, x: event.touches[0].clientX, y: event.touches[0].clientY } as Interaction ));
+        this.canvas.removeEventListener("mousedown",   (event) => this.interactionPiper.pipe( this.convertMouseEventToInteraction(InteractionType.MOUSE_DOWN, event) ));
+        this.canvas.removeEventListener("mouseup",     (event) => this.interactionPiper.pipe( this.convertMouseEventToInteraction(InteractionType.MOUSE_UP, event) ));
+        this.canvas.removeEventListener("mousemove",   (event) => this.interactionPiper.pipe( this.convertMouseEventToInteraction(InteractionType.MOUSE_MOVE, event) ));
+
+        this.canvas.removeEventListener("touchstart",  (event) => this.interactionPiper.pipe( this.convertTouchEventToInteraction(InteractionType.MOUSE_DOWN, event) ));
+        this.canvas.removeEventListener("touchend",    (event) => this.interactionPiper.pipe( this.convertTouchEventToInteraction(InteractionType.MOUSE_UP, event) ));
+        this.canvas.removeEventListener("touchcancel", (event) => this.interactionPiper.pipe( this.convertTouchEventToInteraction(InteractionType.MOUSE_UP, event) ));
+        this.canvas.removeEventListener("touchmove",   (event) => this.interactionPiper.pipe( this.convertTouchEventToInteraction(InteractionType.MOUSE_MOVE, event) ));
     }
 }

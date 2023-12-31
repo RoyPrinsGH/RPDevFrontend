@@ -56,7 +56,7 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ moveDuration, shrinkDuratio
     }, [moveDuration, shrinkDuration]);
 
     return (
-        <div id="cursor" className='w-11 h-11 z-10 border-4 border-gray-300 rounded-full absolute pointer-events-none'></div>
+        <div id="cursor" className='w-11 h-11 z-10 border-4 border-gray-300 rounded-full absolute pointer-events-none' />
     );
 };
 
