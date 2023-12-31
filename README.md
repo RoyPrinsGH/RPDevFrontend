@@ -15,10 +15,10 @@ The purpose of this website is to provide an overview of my journey as a develop
 
 ## Progress
 
-- [x] Project setup
-- [x] Project live on (private) backend using a deployment pipeline and hosted on a https-secured domain
-- [x] Learn the basics of React
-- [ ] Create about me section
+- ✔️ Project setup
+- ✔️ Project live on (private) backend using a deployment pipeline and hosted on a https-secured domain
+- ✔️ Learn the basics of React
+- ⏳ Create about me section
 
 ## Technologies Used
 
