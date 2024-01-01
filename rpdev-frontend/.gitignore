@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 *.pdn
+
+# Copyrighted audio -> do not commit
+*.mp3

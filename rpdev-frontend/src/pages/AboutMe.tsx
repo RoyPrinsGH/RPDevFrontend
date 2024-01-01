@@ -9,7 +9,7 @@ const AboutMe: React.FC = () => {
                 <div className='nav flex justify-center'>
                     <a href='/hub' className='m-2'>Hub</a>
                     <a href='/about' className='m-2'>About Me</a>
-                    <a href='/portfolio' className='m-2'>Portfolio</a>
+                    <a href='/echoes' className='m-2'>Echoes</a>
                 </div>
             </div>
             <div className='padding pb-32' />
