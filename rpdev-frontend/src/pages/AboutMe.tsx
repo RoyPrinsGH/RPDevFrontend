@@ -4,7 +4,7 @@ const AboutMe: React.FC = () => {
     return (
         <div className='page p-4 bg-blue-300/25 h-full w-full'>
             <div className='header text-center'>
-                <h1 className='font-mono font-bold'>.RP.Dev</h1>
+                <h1 className='font-mono font-bold pb-4'>// royprins.dev //</h1>
                 <hr className='h-0.5 bg-blue-700/50' />
                 <div className='nav flex justify-center'>
                     <a href='/hub' className='m-2'>Hub</a>
