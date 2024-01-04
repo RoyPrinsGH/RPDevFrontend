@@ -18,11 +18,11 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ moveDuration, shrinkDuratio
         }
 
         const updateCursorMouseEvent = (e: MouseEvent) => {
-            gsap.to(cursor, {x: e.clientX - 36, y: e.clientY - 36, duration: moveDuration});
+            gsap.to(cursor, {x: e.clientX - 22, y: e.clientY - 22, duration: moveDuration});
         };
 
         const updateCursorTouchEvent = (e: TouchEvent) => {
-            gsap.to(cursor, {x: e.touches[0].clientX - 36, y: e.touches[0].clientY - 36, duration: moveDuration});
+            gsap.to(cursor, {x: e.touches[0].clientX - 22, y: e.touches[0].clientY - 22, duration: moveDuration});
         };
 
         const shrinkCursor = () => {
