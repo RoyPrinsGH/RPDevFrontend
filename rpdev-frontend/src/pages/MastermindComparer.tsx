@@ -37,7 +37,7 @@ const MastermindComparer: React.FC = () => {
                     <h1 className='p-8 pl-5 pr-5 font-bold text-white' style={{"textShadow": "2px 2px 4px black"}}>
                         Mastermind
                     </h1>
-                    <span className='font-thin'>
+                    <span className='font-thin text-black'>
                         Your chosen combination:
                     </span>
                     <div className='flex flex-row gap-4 drop-shadow-xl'>
@@ -47,7 +47,7 @@ const MastermindComparer: React.FC = () => {
                         <MastermindSelector onStateChanged={(newColor) => updateState(3, newColor)}/>
                     </div>
                     <div className='pb-3' />
-                    <span className='font-thin'>
+                    <span className='font-thin text-black'>
                         Their guess:
                     </span>
                     <div className='flex flex-row gap-4 drop-shadow-xl'>
@@ -60,7 +60,7 @@ const MastermindComparer: React.FC = () => {
                     <button className='p-2 bg-slate-500 text-white font-semibold rounded-md border-2 border-black hover:bg-slate-400 transition duration-100 active:bg-slate-600 active:scale-75 drop-shadow-xl' onClick={compare}>
                         Compare!
                     </button>
-                    <div className='pb-3' />
+                    <div className='pb-1' />
                     <div className='overflow-hidden flex flex-row gap-4' style={{"transition": "all 2s ease", "maxHeight": result[0] === -1 ? "0px" : "1000px"}}>
                         <div className='w-12 h-12 rounded-full border-2 border-black bg-red-600 text-center pt-2'>
                             <span className='font-bold text-white text-xl'>
@@ -76,7 +76,7 @@ const MastermindComparer: React.FC = () => {
                     <div className='pb-3' />
                 </div>
             </div>
-            <div className='pb-10' />
+            <div className='pb-6' />
         </div>
     );
 };
