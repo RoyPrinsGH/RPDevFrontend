@@ -31,10 +31,10 @@ const MastermindComparer: React.FC = () => {
     }
 
     return (
-        <div className='page p-4 bg-blue-300/25 h-full w-full flex flex-col justify-center'>
+        <div className='page p-4 bg-black h-full w-full flex flex-col justify-center'>
             <div className='flex justify-center'>
-                <div className='flex flex-col items-center gap-3 border-2 border-black rounded-xl bg-gradient-to-b from-purple-200 to-purple-400'>
-                    <h1 className='p-10 pb-8 font-thin text-white' style={{"textShadow": "2px 2px 4px black"}}>
+                <div className='flex flex-col items-center gap-3 border-4 border-black rounded-xl bg-gradient-to-b from-purple-200 to-purple-400' style={{"boxShadow": "0 0 50px white"}}>
+                    <h1 className='p-8 pl-5 pr-5 font-bold text-white' style={{"textShadow": "2px 2px 4px black"}}>
                         Mastermind
                     </h1>
                     <span className='font-thin'>
@@ -67,7 +67,7 @@ const MastermindComparer: React.FC = () => {
                                 {result[0]}
                             </span>
                         </div>
-                        <div className='w-12 h-12 rounded-full border-2 border-black bg-white text-center pt-2'>
+                        <div className='w-12 h-12 rounded-full border-2 text-black border-black bg-white text-center pt-2'>
                             <span className='font-bold text-xl'>
                                 {result[1]}
                             </span>
@@ -76,6 +76,7 @@ const MastermindComparer: React.FC = () => {
                     <div className='pb-3' />
                 </div>
             </div>
+            <div className='pb-10' />
         </div>
     );
 };
