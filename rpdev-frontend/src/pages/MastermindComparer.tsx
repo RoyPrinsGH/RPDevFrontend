@@ -31,7 +31,7 @@ const MastermindComparer: React.FC = () => {
     }
 
     return (
-        <div className='page p-4 bg-blue-300/25 h-full w-full'>
+        <div className='page p-4 bg-blue-300/25 h-full w-full flex flex-col justify-center'>
             <div className='flex justify-center'>
                 <div className='flex flex-col items-center gap-3 border-2 border-black rounded-xl bg-gradient-to-b from-purple-200 to-purple-400'>
                     <h1 className='p-10 pb-8 font-thin text-white' style={{"textShadow": "2px 2px 4px black"}}>
