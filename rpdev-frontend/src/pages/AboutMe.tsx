@@ -16,8 +16,9 @@ const AboutMe: React.FC = () => {
             <div className='content text-center'>
                 <h1>About Me</h1>
                 <br />
-                <p>Hi! My name is Roy Prins, and I am full-stack software engineer.</p>
+                <p>Hi! My name is Roy Prins, and I am a full-stack software engineer.</p>
                 <p>Welcome to my personal site!</p>
+                <p>Check out the code for this site on GitHub: <a href='https://github.com/RoyPrinsGH/royprins.dev'>GitHub Repo</a></p>
             </div>
         </div>
     );
