@@ -17,6 +17,8 @@ Missions:
 
     Frontend:
       ✔ Add Mastermind page to the home page @done(24-01-16 23:07)
+      ☐ Clean up rpdev-frontend folder @low
+      ☐ Add readmes to necessary folders @low
       ☐ Add a login page @high
       ☐ Add a register page
       ☐ Add a TODO list page
