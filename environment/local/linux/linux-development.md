@@ -1,0 +1,2 @@
+# Local development on Linux
+Clone the repo and make sure you have Node and .NET 8 installed. I haven't set up a Linux environment yet, so I can't provide any scripts or tools to help you in this. Simply build the ASP\.NET Core app yourself, in some folder, and place the output of the front end project's `npm run build` in its base `wwwroot` folder.
