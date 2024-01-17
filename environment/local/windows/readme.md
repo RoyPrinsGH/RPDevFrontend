@@ -2,10 +2,10 @@
 Clone the repo and make sure you have Node and .NET 8 installed.
 
 ## Running the front end only (enabling Vite hot reload)
-Running `environment/local/windows/scripts/frontend.cmd` will start the Vite server. Making any change to a development file will cause Vite's websocket to refresh the corresponding local page in the browser.
+CD into `environment/local/windows/scripts` (or equivalently, in VS Code, right click on the 'scripts' folder and open in terminal) for easy use of the commands. The `frontend` command will start the Vite server. Making any change to a development file will cause Vite's loopback websocket to refresh the corresponding local page in the browser.
 
 ## Running the full app
-Simply run `environment/local/windows/scripts/full-app.cmd`. This will build the project in the `environment/local/windows/devenv` folder and start Kestrel locally, which runs the API and serves the front end.
+The `build` and then `startapp` commands will build the project in the `environment/local/windows/devenv` folder and start Kestrel locally, which runs the API and serves the front end.
 
 A couple things still have to be worked out:
 - Running in-process in IIS is not supported as of yet.

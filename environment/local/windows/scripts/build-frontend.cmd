@@ -7,12 +7,13 @@ REM -- Variables --
 
 set RPDEV_prefix=[96m[RPDEV][0m
 set RPDEV_frontend_path=%~dp0..\..\..\..\rpdev-frontend\
-set RPDEV_vite_port=5173
+set RPDEV_devenv_path=%~dp0..\devenv\
 
 
-REM -- Start --
+REM -- Build --
 
-echo %RPDEV_prefix% [95mStarted frontend in development mode[0m
+echo %RPDEV_prefix% [91mBuilding frontend...[0m
 cd %RPDEV_frontend_path%
-start "" "http://localhost:%RPDEV_vite_port%/about"
-start npm run dev
+call npm run build
+move dist %RPDEV_devenv_path%\wwwroot
+echo %RPDEV_prefix% [92mBuilding frontend... done[0m
