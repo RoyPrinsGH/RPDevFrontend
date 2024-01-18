@@ -16,3 +16,5 @@ echo %RPDEV_prefix% [95mStarting web app[0m
 cd %RPDEV_devenv_path%
 start "" "http://localhost:%RPDEV_port%"
 start rpdev-backend.exe
+
+cd %~dp0

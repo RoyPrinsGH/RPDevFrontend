@@ -17,3 +17,5 @@ cd %RPDEV_frontend_path%
 call npm run build
 move dist %RPDEV_devenv_path%\wwwroot
 echo %RPDEV_prefix% [92mBuilding frontend... done[0m
+
+cd %~dp0

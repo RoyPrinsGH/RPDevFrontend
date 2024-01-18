@@ -19,3 +19,5 @@ echo %RPDEV_prefix% [91mBuilding backend...[0m
 cd %RPDEV_backend_path%
 dotnet publish rpdev-backend.csproj -c Release -o %RPDEV_devenv_path% --self-contained true -p:PublishSingleFile=true -p:AssemblyName=rpdev-backend
 echo %RPDEV_prefix% [92mBuilding backend... done[0m
+
+cd %~dp0

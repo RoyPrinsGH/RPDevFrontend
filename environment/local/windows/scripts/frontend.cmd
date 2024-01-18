@@ -16,3 +16,5 @@ echo %RPDEV_prefix% [95mStarted frontend in development mode[0m
 cd %RPDEV_frontend_path%
 start "" "http://localhost:%RPDEV_vite_port%/about"
 start npm run dev
+
+cd %~dp0

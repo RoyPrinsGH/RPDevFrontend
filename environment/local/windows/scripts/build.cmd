@@ -7,3 +7,5 @@ REM -- Build --
 
 call %~dp0\build-backend.cmd
 call %~dp0\build-frontend.cmd
+
+cd %~dp0
