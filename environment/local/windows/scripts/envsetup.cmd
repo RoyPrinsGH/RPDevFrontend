@@ -56,5 +56,5 @@ if "%environmentChoice%"=="1" (
     exit /b 1
 )
 
-echo %RPDEV_prefix% [91mPlease restart VS Code to apply the changes.[0m
+echo %RPDEV_prefix% [91mPlease restart your IDE or terminal process to apply the changes.[0m
 echo.
