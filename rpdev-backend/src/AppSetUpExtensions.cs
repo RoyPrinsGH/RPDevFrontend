@@ -1,11 +1,20 @@
 namespace RPDev;
 
+using Services;
+using Data;
+using Microsoft.EntityFrameworkCore;
+
 public static class AppSetupExtensions {
     public static IServiceCollection ConfigureRPDevServices(this IServiceCollection services) {
         services.AddProblemDetails();
         services.AddExceptionHandler<RPDevExceptionHandler>();
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
+
+        string? connectionString = Environment.GetEnvironmentVariable("RPDEV_CONNECTION_STRING");
+        services.AddDbContext<RPDevDataContext>(options => options.UseSqlServer(connectionString));
+
+        services.AddScoped<TodoItemService>();
 
         return services;
     }
@@ -27,7 +36,7 @@ public static class AppSetupExtensions {
         return app;
     }
 
-    public static IEndpointRouteBuilder ConfigureRPDevEndpoints(this IEndpointRouteBuilder endpoints) {
+    public static IEndpointRouteBuilder ConfigureGenericRPDevEndpoints(this IEndpointRouteBuilder endpoints) {
         // SPA fallback
         endpoints.MapFallbackToFile("index.html");
 

@@ -2,6 +2,11 @@
 REM This script is intended for development purposes only.
 REM It is not intended for production use.
 
+goto :main
+:resetANSI
+EXIT /B
+
+:main
 
 REM -- Variables --
 
@@ -33,28 +38,49 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-REM Menu to select ASPNETCORE_ENVIRONMENT value
+echo.
+set /p changeEnvironment="%RPDEV_prefix% Do you want to change the ASPNETCORE_ENVIRONMENT? (Y/N):"
+if /i not "%changeEnvironment%"=="Y" ( goto :skipEnvironment )
+
 echo.
 echo Select a value for ASPNETCORE_ENVIRONMENT:
 echo 1. Development
 echo 2. Staging
 echo 3. Production
-set /p environmentChoice=Enter your choice (1-3): 
 
-REM Set ASPNETCORE_ENVIRONMENT based on user's choice
+set /p environmentChoice="Enter your choice (1-3): "
+
 if "%environmentChoice%"=="1" (
     setx ASPNETCORE_ENVIRONMENT Development
     echo %RPDEV_prefix% [93mDevelopment environment selected.[0m
+    echo %RPDEV_prefix% [91mPlease restart your IDE or terminal process to apply the changes.[0m
 ) else if "%environmentChoice%"=="2" (
     setx ASPNETCORE_ENVIRONMENT Staging
+    call :resetANSI
     echo %RPDEV_prefix% [93mStaging environment selected.[0m
+    echo %RPDEV_prefix% [91mPlease restart your IDE or terminal process to apply the changes.[0m
 ) else if "%environmentChoice%"=="3" (
     setx ASPNETCORE_ENVIRONMENT Production
     echo %RPDEV_prefix% [93mProduction environment selected.[0m
+    echo %RPDEV_prefix% [91mPlease restart your IDE or terminal process to apply the changes.[0m
 ) else (
     echo %RPDEV_prefix% [91mInvalid choice. Please select a valid option.[0m
     exit /b 1
 )
+echo.
 
+:skipEnvironment
+
+set /p setConnectionString="%RPDEV_prefix% Do you want to set RPDEV_CONNECTION_STRING? (Y/N): "
+if /i not "%setConnectionString%"=="Y" ( goto :skipConnectionString )
+
+set /p connectionString="Enter the connection string for RPDEV_CONNECTION_STRING: "
+
+setx RPDEV_CONNECTION_STRING "%connectionString%"
+echo %RPDEV_prefix% [93mConnection string set successfully.[0m
 echo %RPDEV_prefix% [91mPlease restart your IDE or terminal process to apply the changes.[0m
 echo.
+
+:skipConnectionString
+
+pause

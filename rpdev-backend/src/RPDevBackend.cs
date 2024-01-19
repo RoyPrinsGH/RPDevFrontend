@@ -1,3 +1,5 @@
+using RPDev.Endpoints;
+
 namespace RPDev;
 
 public class RPDevBackend {
@@ -9,7 +11,9 @@ public class RPDevBackend {
         WebApplication app = MakeWebAppWithRPDevServices(args);
 
         app.ConfigureRPDevMiddlewarePipeline(env: app.Environment);
-        app.ConfigureRPDevEndpoints();
+        app.ConfigureGenericRPDevEndpoints();
+
+        app.MapGetAllTodoItems();
 
         return app;
     }
