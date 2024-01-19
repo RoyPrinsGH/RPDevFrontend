@@ -38,6 +38,21 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
+REM Check if SQL Server is installed
+sqlcmd -? >nul
+if %errorlevel% neq 0 (
+    echo %RPDEV_prefix% [91mSQL Server is not installed. Please install SQL Server before proceeding.[0m
+    exit /b 1
+)
+
+REM Check if dotnet-ef tool is installed
+dotnet tool list --global | findstr /C:"dotnet-ef" >nul
+if %errorlevel% neq 0 (
+    echo %RPDEV_prefix% [91mdotnet-ef tool is not installed. Please run the following command to install it:[0m
+    echo dotnet tool install --global dotnet-ef
+    exit /b 1
+)
+
 echo.
 set /p changeEnvironment="%RPDEV_prefix% Do you want to change the ASPNETCORE_ENVIRONMENT? (Y/N):"
 if /i not "%changeEnvironment%"=="Y" ( goto :skipEnvironment )
