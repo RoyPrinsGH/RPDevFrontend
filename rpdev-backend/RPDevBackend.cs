@@ -1,24 +1,33 @@
+using RPDev;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddProblemDetails();
+builder.Services.AddExceptionHandler<RPDevExceptionHandler>();
 
 var app = builder.Build();
+
+app.UseStatusCodePages();
+
+if (app.Environment.IsDevelopment()) {
+    app.UseDeveloperExceptionPage();
+} else {
+    app.UseExceptionHandler();
+}
+
+app.UseStaticFiles();
+app.UseRouting();
+
+app.MapFallbackToFile("index.html");
 
 // We have no homepage yet. Redirect to about page.
 app.MapGet("/", () => Results.Redirect("/about"));
 
-if (app.Environment.IsDevelopment())
-{
-    Console.WriteLine("Development environment detected");
-    app.UseDeveloperExceptionPage();
-} else if (app.Environment.IsProduction()) {
-    Console.WriteLine("Production environment detected");
-} else if (app.Environment.IsStaging()) {
-    Console.WriteLine("Staging environment detected");
-} else {
-    Console.WriteLine("Unknown environment detected");
-}
+// Exception and error testing
+app.MapGet("/generate/exception", () => { 
+    throw new Exception("This is an exception!");
+});
 
-app.UseDeveloperExceptionPage();
-app.UseStaticFiles();
-app.MapFallbackToFile("index.html");
+app.MapGet("/generate/code404", () => Results.NotFound());
+app.MapGet("/generate/code400", () => Results.BadRequest());
 
 app.Run();
