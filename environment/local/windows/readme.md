@@ -14,4 +14,4 @@ The `build` and then `startapp` commands will build the project in the `environm
 As a maintenance measure, I rely on scripts. This way I can update the inner workings of the environment setup without ever changing the developer's workflow side of things. Kind of like Dependency Injection!
 
 ## Notes
-- Do not modify any files in the `environment/local/windows/devenv` folder. This folder is cleared on every rebuild.
+- Do not modify any files in the `environment/local/windows/devenv` folder. This folder is not committed.
