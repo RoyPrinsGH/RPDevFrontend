@@ -3,13 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RPDev.Data;
 
 #nullable disable
 
 namespace rpdev_backend.Migrations
 {
-    [DbContext(typeof(RPDevDataContext))]
+    [DbContext(typeof(RPDev.Services.Generic.RPDevDataContext))]
     partial class RPDevDataContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

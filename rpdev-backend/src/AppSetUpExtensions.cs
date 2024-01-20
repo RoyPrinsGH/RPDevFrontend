@@ -1,11 +1,11 @@
 namespace RPDev;
 
-using Services;
-using Data;
 using Microsoft.EntityFrameworkCore;
 
+using Services.Generic;
+
 public static class AppSetupExtensions {
-    public static IServiceCollection ConfigureRPDevServices(this IServiceCollection services) {
+    public static IServiceCollection ConfigureGenericRPDevServices(this IServiceCollection services) {
         services.AddProblemDetails();
         services.AddExceptionHandler<RPDevExceptionHandler>();
         services.AddEndpointsApiExplorer();
@@ -13,8 +13,6 @@ public static class AppSetupExtensions {
 
         string? connectionString = Environment.GetEnvironmentVariable("RPDEV_CONNECTION_STRING");
         services.AddDbContext<RPDevDataContext>(options => options.UseSqlServer(connectionString));
-
-        services.AddScoped<TodoItemService>();
 
         return services;
     }
@@ -41,7 +39,7 @@ public static class AppSetupExtensions {
         endpoints.MapFallbackToFile("index.html");
 
         // We have no homepage yet. Redirect to about page.
-        endpoints.MapGet("/", () => Results.Redirect("/about"));
+        endpoints.MapGet("/", () => Results.Redirect("/about")).ExcludeFromDescription();
 
         // Exception and error testing
         endpoints.MapGet("/generate/exception", () => { 

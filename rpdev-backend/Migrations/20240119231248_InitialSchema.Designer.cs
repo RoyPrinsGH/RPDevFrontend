@@ -4,13 +4,12 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RPDev.Data;
 
 #nullable disable
 
 namespace rpdev_backend.Migrations
 {
-    [DbContext(typeof(RPDevDataContext))]
+    [DbContext(typeof(RPDev.Services.Generic.RPDevDataContext))]
     [Migration("20240119231248_InitialSchema")]
     partial class InitialSchema
     {

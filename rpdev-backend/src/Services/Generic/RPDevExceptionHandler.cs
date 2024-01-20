@@ -1,6 +1,6 @@
-using System.Net;
+namespace RPDev.Services.Generic;
 
-namespace RPDev.Services;
+using System.Net;
 
 public class RPDevExceptionHandler(IProblemDetailsService problemDetailsService) : Microsoft.AspNetCore.Diagnostics.IExceptionHandler
 {

@@ -67,6 +67,7 @@ set /p environmentChoice="Enter your choice (1-3): "
 
 if "%environmentChoice%"=="1" (
     setx ASPNETCORE_ENVIRONMENT Development
+    call :resetANSI
     echo %RPDEV_prefix% [93mDevelopment environment selected.[0m
     echo %RPDEV_prefix% [91mPlease restart your IDE or terminal process to apply the changes.[0m
 ) else if "%environmentChoice%"=="2" (
@@ -76,6 +77,7 @@ if "%environmentChoice%"=="1" (
     echo %RPDEV_prefix% [91mPlease restart your IDE or terminal process to apply the changes.[0m
 ) else if "%environmentChoice%"=="3" (
     setx ASPNETCORE_ENVIRONMENT Production
+    call :resetANSI
     echo %RPDEV_prefix% [93mProduction environment selected.[0m
     echo %RPDEV_prefix% [91mPlease restart your IDE or terminal process to apply the changes.[0m
 ) else (
@@ -92,6 +94,7 @@ if /i not "%setConnectionString%"=="Y" ( goto :skipConnectionString )
 set /p connectionString="Enter the connection string for RPDEV_CONNECTION_STRING: "
 
 setx RPDEV_CONNECTION_STRING "%connectionString%"
+call :resetANSI
 echo %RPDEV_prefix% [93mConnection string set successfully.[0m
 echo %RPDEV_prefix% [91mPlease restart your IDE or terminal process to apply the changes.[0m
 echo.

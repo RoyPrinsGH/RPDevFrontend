@@ -1,6 +1,7 @@
-using RPDev.Endpoints;
-
 namespace RPDev;
+
+using Endpoints;
+using Services.TodoItems;
 
 public class RPDevBackend {
     public static void Main(string[] args) {
@@ -13,7 +14,7 @@ public class RPDevBackend {
         app.ConfigureRPDevMiddlewarePipeline(env: app.Environment);
         app.ConfigureGenericRPDevEndpoints();
 
-        app.MapGetAllTodoItems();
+        app.ConfigureTodoItemsEndpoints();
 
         return app;
     }
@@ -21,7 +22,9 @@ public class RPDevBackend {
     private static WebApplication MakeWebAppWithRPDevServices(string[] args) {
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.ConfigureRPDevServices();
+        builder.Services.ConfigureGenericRPDevServices();
+
+        builder.Services.AddScoped<ITodoItemService, TodoItemService>();
 
         return builder.Build();
     }
