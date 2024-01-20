@@ -12,7 +12,9 @@ Missions:
       ✔ Setup a database @done(24-01-20 15:57)
       ✔ Program the API to interact with the database @done(24-01-20 15:57)
       ☐ Add Identity to the project
-      ☐ Add JWT authentication to the project
+      ✘ Add JWT authentication to the project @cancelled(24-01-20 16:00)
+      Cookie authentication is used instead of JWT authentication because it is easier to implement and more secure.
+      ☐ Add cookie authentication to the API endpoint @high
       ☐ Add an authenticated TODO list API endpoint
 
     Frontend:
