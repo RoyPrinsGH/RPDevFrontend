@@ -22,7 +22,7 @@ REM -- Move frontend code to wwwroot --
 
 echo %RPDEV_prefix% [91mMoving frontend into wwwroot...[0m
 cd %RPDEV_frontend_path%
-move dist %RPDEV_devenv_path%\wwwroot
+xcopy /y /s /q dist %RPDEV_devenv_path%wwwroot\
 echo %RPDEV_prefix% [92mMoving frontend into wwwroot... done[0m
 
 cd %~dp0
