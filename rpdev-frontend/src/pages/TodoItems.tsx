@@ -16,8 +16,9 @@ const TodoItems: React.FC = () => {
     };
 
     useEffect(() => {
+        console.log('useEffect called');
         fetchItems();
-    });
+    }, []);
 
     return (
         <div>
