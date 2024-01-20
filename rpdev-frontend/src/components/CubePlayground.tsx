@@ -42,7 +42,7 @@ const CubePlayground: React.FC<SiteViewProps> = ({ targetObjectCount }) => {
             sceneManager.current!.tick();
             renderer.current!.render();
 
-            let objectCount = sceneManager.current!.getSceneObjects().length + 0.000001;
+            const objectCount = sceneManager.current!.getSceneObjects().length + 0.000001;
 
             if (Math.random() < 0.0005 / objectCount * targetObjectCount) {
                 addRandomObject();
@@ -61,14 +61,14 @@ const CubePlayground: React.FC<SiteViewProps> = ({ targetObjectCount }) => {
         };
 
         const removeRandomObject = () => {
-            let objects = sceneManager.current!.getSceneObjects();
+            const objects = sceneManager.current!.getSceneObjects();
             if (objects.length > 0) {
                 sceneManager.current!.remove(objects[0]);
             }
         }
 
         const addRandomObject = () => {
-            let cube = new InteractableCube();
+            const cube = new InteractableCube();
             cube.position.x = Math.random() * 7 - 3.5;
             cube.position.y = Math.random() * 7 - 3.5;
             cube.position.z = Math.random() * 7 - 3.5;

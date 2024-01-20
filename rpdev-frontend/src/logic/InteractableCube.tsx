@@ -1,8 +1,8 @@
-import { BoxGeometry, MeshBasicMaterial, TextureLoader, Mesh } from "three"
+import {BoxGeometry, MeshBasicMaterial, TextureLoader, Mesh} from "three"
 import AssetManager from "./AssetManager";
-import { InteractableObject, UpdateableObject, CubePlaygroundSceneManager } from "./CubePlaygroundSceneManager";
+import {InteractableObject, UpdateableObject, CubePlaygroundSceneManager} from "./CubePlaygroundSceneManager";
 import InteractableCubeAnimator from "./InteractableCubeAnimator";
-import { Interaction } from "./InteractableCanvas";
+import {Interaction} from "./InteractableCanvas";
 
 export class InteractableCube extends Mesh implements InteractableObject, UpdateableObject {
 
@@ -12,12 +12,12 @@ export class InteractableCube extends Mesh implements InteractableObject, Update
         const geometry = new BoxGeometry(2, 2, 2);
         const textureLoader = new TextureLoader();
         const materials = [
-            new MeshBasicMaterial({ map: textureLoader.load(AssetManager.getImg("right")) }),
-            new MeshBasicMaterial({ map: textureLoader.load(AssetManager.getImg("left")) }),
-            new MeshBasicMaterial({ map: textureLoader.load(AssetManager.getImg("top")) }),
-            new MeshBasicMaterial({ map: textureLoader.load(AssetManager.getImg("bottom")) }),
-            new MeshBasicMaterial({ map: textureLoader.load(AssetManager.getImg("front")) }),
-            new MeshBasicMaterial({ map: textureLoader.load(AssetManager.getImg("back")) }),
+            new MeshBasicMaterial({map: textureLoader.load(AssetManager.getImg("right"))}),
+            new MeshBasicMaterial({map: textureLoader.load(AssetManager.getImg("left"))}),
+            new MeshBasicMaterial({map: textureLoader.load(AssetManager.getImg("top"))}),
+            new MeshBasicMaterial({map: textureLoader.load(AssetManager.getImg("bottom"))}),
+            new MeshBasicMaterial({map: textureLoader.load(AssetManager.getImg("front"))}),
+            new MeshBasicMaterial({map: textureLoader.load(AssetManager.getImg("back"))}),
         ];
         super(geometry, materials);
 
@@ -28,7 +28,7 @@ export class InteractableCube extends Mesh implements InteractableObject, Update
         this.cubeInteractionAnimator.pipe(sceneManager, interaction);
     }
 
-    tick(_: CubePlaygroundSceneManager) {
+    tick() {
         this.cubeInteractionAnimator.tick();
     }
 

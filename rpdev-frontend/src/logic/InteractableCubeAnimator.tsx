@@ -45,10 +45,10 @@ export default class InteractableCubeAnimator {
     tick() {
         this.animateTick();  
         this.updateAnimationState();
-    };
+    }
 
     pipe(sceneManager: CubePlaygroundSceneManager, interaction: Interaction) {
-        let intersection = sceneManager.getIntersectionAtScreenPosition(interaction)
+        const intersection = sceneManager.getIntersectionAtScreenPosition(interaction)
         if (intersection === undefined || intersection.object.uuid !== this.targetObject.uuid) {
             if (this.animationState === AnimationState.DRAGGING) {
                 this.dragTo = undefined;
@@ -83,7 +83,7 @@ export default class InteractableCubeAnimator {
             default:
                 break;
         }
-    };
+    }
 
     private calculateTargetRotation(sceneManager: CubePlaygroundSceneManager, interaction: Interaction): Euler | undefined {
         const mouse = new Vector2();
@@ -102,7 +102,7 @@ export default class InteractableCubeAnimator {
         this.targetObject.rotateOnAxis(new Vector3(0, 0, 1), Math.PI);
         this.targetObject.rotateOnWorldAxis(new Vector3(0, 0, 1), Math.PI);
 
-        let targetRotation = this.targetObject.rotation.clone();
+        const targetRotation = this.targetObject.rotation.clone();
 
         this.targetObject.rotation.copy(prevRotation);
 
@@ -172,7 +172,7 @@ export default class InteractableCubeAnimator {
     private isFaceRotationDone() {
         if (this.targetRotation === undefined) return true;
 
-        let rot: { diff_x: number, diff_y: number, diff_z: number } | undefined = this.getDiffWithTargetRotation();
+        const rot: { diff_x: number, diff_y: number, diff_z: number } | undefined = this.getDiffWithTargetRotation();
         if (rot === undefined) return;
 
         return Math.abs(rot.diff_x) < 0.01 && Math.abs(rot.diff_y) < 0.01 && Math.abs(rot.diff_z) < 0.01;
@@ -220,9 +220,9 @@ export default class InteractableCubeAnimator {
     private getDiffWithTargetRotation(): { diff_x: number, diff_y: number, diff_z: number } | undefined {
         if (this.targetRotation === undefined) return undefined;
 
-        let diff_x = correctRotation(this.targetRotation.x - this.targetObject.rotation.x);
-        let diff_y = correctRotation(this.targetRotation.y - this.targetObject.rotation.y);
-        let diff_z = correctRotation(this.targetRotation.z - this.targetObject.rotation.z);
+        const diff_x = correctRotation(this.targetRotation.x - this.targetObject.rotation.x);
+        const diff_y = correctRotation(this.targetRotation.y - this.targetObject.rotation.y);
+        const diff_z = correctRotation(this.targetRotation.z - this.targetObject.rotation.z);
 
         return { diff_x, diff_y, diff_z };
     }
@@ -230,7 +230,7 @@ export default class InteractableCubeAnimator {
     private animateFaceRotationTick() {
         if (this.targetRotation === undefined) return;
 
-        let rot: { diff_x: number, diff_y: number, diff_z: number } | undefined = this.getDiffWithTargetRotation();
+        const rot: { diff_x: number, diff_y: number, diff_z: number } | undefined = this.getDiffWithTargetRotation();
         if (rot === undefined) return;
 
         this.targetObject.rotation.x += clampAwayFromZero(rot.diff_x * 0.02, 0.002);

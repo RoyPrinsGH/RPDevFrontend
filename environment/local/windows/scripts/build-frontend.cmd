@@ -14,6 +14,7 @@ REM -- Build --
 
 echo %RPDEV_prefix% [91mBuilding frontend...[0m
 cd %RPDEV_frontend_path%
+call npm run lint
 call npm run build
 echo %RPDEV_prefix% [92mBuilding frontend... done[0m
 
@@ -22,6 +23,7 @@ REM -- Move frontend code to wwwroot --
 
 echo %RPDEV_prefix% [91mMoving frontend into wwwroot...[0m
 cd %RPDEV_frontend_path%
+rmdir %RPDEV_devenv_path%wwwroot /s /q
 xcopy /y /s /q dist %RPDEV_devenv_path%wwwroot\
 echo %RPDEV_prefix% [92mMoving frontend into wwwroot... done[0m
 

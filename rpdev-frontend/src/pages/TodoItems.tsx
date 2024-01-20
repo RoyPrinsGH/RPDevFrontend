@@ -1,4 +1,10 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
+
+type TodoItem = {
+    id: number;
+    name: string;
+    isComplete: boolean;
+};
 
 const TodoItems: React.FC = () => {
     const [items, setItems] = React.useState([]);
@@ -17,7 +23,7 @@ const TodoItems: React.FC = () => {
         <div>
             <h1>Todo Items:</h1>
             <ul>
-                {items.map((item: any) => (
+                {items.map((item: TodoItem) => (
                     <li key={item.id}>
                         {item.name}
                     </li>
