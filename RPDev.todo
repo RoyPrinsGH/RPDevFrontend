@@ -1,23 +1,23 @@
 Missions:
 
   Environment Setup:
-    ☐ Setup dev environment scripts @low @started(24-01-17 00:31)
+    ✔ Setup dev environment scripts @low @started(24-01-17 00:31) @done(24-01-20 15:57) @lasted(3d15h26m45s)
     ☐ Setup a deployment pipeline in either Github Actions or Azure DevOps @high
 
   Development:
     Backend:
       ✔ Create a new ASP.NET Core Web API project @done(24-01-16 23:10)
-      ☐ Configure the project to have a solid, well-understood and clear base structure @high
-      ☐ Have a minimal working API endpoint
-      ☐ Setup a database
-      ☐ Program the API to interact with the database
+      ✔ Configure the project to have a solid, well-understood and clear base structure @high @done(24-01-20 15:57)
+      ✔ Have a minimal working API endpoint @done(24-01-20 15:57)
+      ✔ Setup a database @done(24-01-20 15:57)
+      ✔ Program the API to interact with the database @done(24-01-20 15:57)
       ☐ Add Identity to the project
       ☐ Add JWT authentication to the project
       ☐ Add an authenticated TODO list API endpoint
 
     Frontend:
       ✔ Add Mastermind page to the home page @done(24-01-16 23:07)
-      ☐ Clean up rpdev-frontend folder @low
+      ✔ Clean up rpdev-frontend folder @low @done(24-01-20 15:57)
       ☐ Add readmes to necessary folders @low
       ☐ Add a login page @high
       ☐ Add a register page
