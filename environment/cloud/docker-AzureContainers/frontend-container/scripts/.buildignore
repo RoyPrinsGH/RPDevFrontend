@@ -1,0 +1,4 @@
+..\..\..\..\..\rpdev-frontend\dist\
+..\..\..\..\..\rpdev-frontend\node_modules\
+..\.gitignore
+..\certificates\.gitignore

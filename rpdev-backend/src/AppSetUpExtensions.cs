@@ -18,7 +18,6 @@ public static class AppSetupExtensions {
     }
 
     public static IApplicationBuilder ConfigureRPDevMiddlewarePipeline(this IApplicationBuilder app, IWebHostEnvironment env) {
-        app.UseStaticFiles();
         app.UseRouting();
 
         app.UseStatusCodePages();
@@ -35,9 +34,6 @@ public static class AppSetupExtensions {
     }
 
     public static IEndpointRouteBuilder ConfigureGenericRPDevEndpoints(this IEndpointRouteBuilder endpoints) {
-        // SPA fallback
-        endpoints.MapFallbackToFile("index.html");
-
         // We have no homepage yet. Redirect to about page.
         endpoints.MapGet("/", () => Results.Redirect("/about")).ExcludeFromDescription();
 
