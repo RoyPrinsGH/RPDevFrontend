@@ -1,5 +1,2 @@
 bin
 obj
-
-// Do not commit as a safeguard against committing sensitive information
-appsettings.*
