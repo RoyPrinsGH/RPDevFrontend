@@ -21,7 +21,7 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Add SSL certificates
 COPY private_key.pem /etc/ssl/private/private_key.pem
-COPY certificate_chain.pem /etc/ssl/certs/certificate_chain.pem
+COPY certificate_chain.pem /etc/ssl/certs/certificate.pem
 
 EXPOSE 443
 

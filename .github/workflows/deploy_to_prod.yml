@@ -13,8 +13,8 @@ jobs:
       run: ls
     - name: Save private key to file
       run: | 
-        echo $PRIVATE_KEY > private-key.pem
+        echo $PRIVATE_KEY > environment/cloud/docker-AzureContainers/frontend-container/certificates/private_key.pem
       env:
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-    - name: Show file
-      run: cat private-key.pem
+    - name: Build image using Docker
+      run: ./environment/cloud/docker-AzureContainers/frontend-container/scripts/build.sh
