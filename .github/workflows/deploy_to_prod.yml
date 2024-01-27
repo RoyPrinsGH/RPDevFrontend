@@ -11,5 +11,10 @@ jobs:
     - uses: actions/checkout@v3
     - name: LS
       run: ls
-    - name: Check private key secret is accessed by GH Actions
-      run: echo ${{ secrets.PRIVATE_KEY }}
+    - name: Save private key to file
+      run: | 
+        echo $PRIVATE_KEY > private-key.pem
+      env:
+        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+    - name: Show file
+      run: cat private-key.pem
