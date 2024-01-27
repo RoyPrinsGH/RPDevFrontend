@@ -3,7 +3,7 @@ namespace RPDev;
 using Endpoints;
 using Services.TodoItems;
 
-public class RPDevBackend {
+public static class RPDevBackend {
     public static void Main(string[] args) {
         BuildRPDevBackendApp(args).Run();
     }
