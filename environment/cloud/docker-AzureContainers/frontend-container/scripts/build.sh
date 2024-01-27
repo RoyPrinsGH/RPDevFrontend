@@ -3,7 +3,7 @@ cd "$(dirname "$0")"
 rm -rf ../containerenv
 mkdir ../containerenv
 
-cp -r ../../../../../rpdev-frontend/* ../containerenv/ --exclude=node_modules --exclude=dist
+cp -r ../../../../../rpdev-frontend/* ../containerenv/
 cp ../nginx.conf ../containerenv/
 cp ../certificates/* ../containerenv/
 
