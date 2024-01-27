@@ -6,10 +6,8 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v3
     - name: LS
       run: ls
-    - name: Check private key secret is accessed by GH Actions
-      run: echo ${{ secrets.PRIVATE_KEY }}
