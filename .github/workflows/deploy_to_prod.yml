@@ -18,3 +18,12 @@ jobs:
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
     - name: Build image using Docker
       run: bash ./environment/cloud/docker-AzureContainers/frontend-container/scripts/build.sh
+    - name: LS
+      run: ls
+    - name: Docker login to Azure
+      run: docker login --username $USERNAME --password $PASSWORD rpdevregistry.azurecr.io
+      env:
+        USERNAME: ${{ secrets.REGISTRY_USERNAME }}
+        PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+    - name: Docker push image ro registry
+      run: docker tag rpdev-frontend rpdevregistry.azurecr.io/rpdev-frontend && docker push rpdevregistry.azurecr.io/rpdev-frontend
