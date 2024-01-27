@@ -7,6 +7,6 @@ cp -r ../../../../../rpdev-frontend/* ../containerenv/ --exclude=node_modules --
 cp ../nginx.conf ../containerenv/
 cp ../certificates/* ../containerenv/
 
-docker build -t rpdev-frontend ../containerenv -f ../dockerfile
+docker build -t rpdev-frontend ../containerenv -f ../dockerfile --progress plain --no-cache
 
 rm -rf ../containerenv
