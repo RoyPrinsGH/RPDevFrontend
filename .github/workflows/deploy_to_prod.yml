@@ -1,0 +1,15 @@
+name: royprins.dev CI/CD - Deploy to production
+
+on:
+  push:
+    branches: [ "production" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: LS
+      run: ls
+    - name: Check private key secret is accessed by GH Actions
+      run: echo ${{ secrets.PRIVATE_KEY }}
