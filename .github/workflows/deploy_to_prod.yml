@@ -1,0 +1,20 @@
+name: royprins.dev CI/CD - Deploy to production
+
+on:
+  push:
+    branches: [ "production" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v3
+    - name: LS
+      run: ls
+    - name: Save private key to file
+      run: | 
+        echo $PRIVATE_KEY > private-key.pem
+      env:
+        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+    - name: Show file
+      run: cat private-key.pem
