@@ -2,3 +2,4 @@
 ..\..\..\..\..\rpdev-frontend\node_modules\
 ..\.gitignore
 ..\certificates\.gitignore
+..\certificates\.readme.md
