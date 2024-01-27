@@ -17,4 +17,4 @@ jobs:
       env:
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
     - name: Build image using Docker
-      run: ./environment/cloud/docker-AzureContainers/frontend-container/scripts/build.sh
+      run: bash ./environment/cloud/docker-AzureContainers/frontend-container/scripts/build.sh
