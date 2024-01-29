@@ -1,4 +1,4 @@
-name: royprins.dev CI/CD - Deploy to production
+name: royprins.dev CI/CD - Deploy container images to Azure Container Registry
 
 on:
   push:
@@ -9,8 +9,6 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v3
-    - name: LS
-      run: ls && ls environment/cloud/docker-AzureContainers/frontend-container
     - name: Save private key to file
       run: | 
         echo $PRIVATE_KEY > environment/cloud/docker-AzureContainers/frontend-container/certificates/private_key.pem
@@ -18,8 +16,10 @@ jobs:
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
     - name: Build image using Docker
       run: bash ./environment/cloud/docker-AzureContainers/frontend-container/scripts/build.sh
+    - name: Remove private key file
+      run: rm environment/cloud/docker-AzureContainers/frontend-container/certificates/private_key.pem
     - name: LS
-      run: ls environment/cloud/docker-AzureContainers/frontend-container
+      run: ls environment/cloud/docker-AzureContainers/frontend-container/certificates
     - name: Docker login to Azure
       run: docker login --username $USERNAME --password $PASSWORD rpdevregistry.azurecr.io
       env:
